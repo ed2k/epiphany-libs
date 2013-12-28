@@ -4,7 +4,8 @@
   This file is part of the Epiphany Software Development Kit.
 
   Copyright (C) 2013 Adapteva, Inc.
-  Contributed by Oleg Raikhman, Jim Thomas, Yaniv Sapir <support@adapteva.com>
+  See AUTHORS for list of contributors.
+  Support e-mail: <support@adapteva.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License (LGPL)
@@ -29,10 +30,10 @@ int e_dma_busy(e_dma_id_t chan)
 {
 	switch (chan)
 	{
-	case 0:
-		return e_sysreg_read(E_DMA0STATUS) & 0xf;
-	case 1:
-		return e_sysreg_read(E_DMA1STATUS) & 0xf;
+	case E_DMA_0:
+		return e_reg_read(E_REG_DMA0STATUS) & 0xf;
+	case E_DMA_1:
+		return e_reg_read(E_REG_DMA1STATUS) & 0xf;
 	default:
 		return -1;
 	}

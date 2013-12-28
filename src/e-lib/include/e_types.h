@@ -4,7 +4,8 @@
   This file is part of the Epiphany Software Development Kit.
 
   Copyright (C) 2013 Adapteva, Inc.
-  Contributed by Oleg Raikhman, Jim Thomas, Yaniv Sapir <support@adapteva.com>
+  See AUTHORS for list of contributors.
+  Support e-mail: <support@adapteva.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License (LGPL)
@@ -26,16 +27,24 @@
 #define _E_TYPES_H_
 
 
-/**
- * @file e_types.h
- * @brief E_types
- *
- */
+#ifdef __cplusplus
+typedef enum {
+	E_FALSE = false,
+	E_TRUE  = true,
+} e_bool_t;
+#else
+typedef enum {
+	E_FALSE = 0,
+	E_TRUE  = 1,
+} e_bool_t;
+#endif
 
-#define TRUE 1
-#define FALSE 0
-typedef unsigned bool;
 
+typedef enum {
+	E_OK   =  0,
+	E_ERR  = -1,
+	E_WARN = -2,
+} e_return_stat_t;
 
 
 #endif /* _E_TYPES_H_ */

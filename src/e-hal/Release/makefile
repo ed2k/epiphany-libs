@@ -29,7 +29,7 @@ all: libe-hal.so
 libe-hal.so: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc -shared -o "libe-hal.so" $(OBJS) $(USER_OBJS) $(LIBS)
+	$(CROSS_COMPILE)gcc -shared -o "libe-hal.so" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

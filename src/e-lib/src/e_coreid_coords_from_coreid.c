@@ -4,7 +4,8 @@
   This file is part of the Epiphany Software Development Kit.
 
   Copyright (C) 2013 Adapteva, Inc.
-  Contributed by Oleg Raikhman, Jim Thomas, Yaniv Sapir <support@adapteva.com>
+  See AUTHORS for list of contributors.
+  Support e-mail: <support@adapteva.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License (LGPL)
@@ -22,11 +23,12 @@
   <http://www.gnu.org/licenses/>.
 */
 
-#include <machine/epiphany_config.h>
 #include "e_coreid.h"
 
 void e_coords_from_coreid(e_coreid_t coreid, unsigned *row, unsigned *col)
 {
+	coreid = coreid - e_group_config.group_id;
+
 	*row = (coreid >> 6) & 0x3f;
 	*col = coreid & 0x3f;
 

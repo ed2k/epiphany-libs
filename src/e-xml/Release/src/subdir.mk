@@ -23,7 +23,7 @@ CPP_DEPS += \
 src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -O3 -Wall -c -fmessage-length=0  -fPIC -DPIC -Wno-write-strings -DLINUX -DUNIX -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	${CROSS_COMPILE}g++ -O3 -Wall -c -fmessage-length=0  -fPIC -DPIC -Wno-write-strings -DLINUX -DUNIX -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

@@ -4,7 +4,8 @@
   This file is part of the Epiphany Software Development Kit.
 
   Copyright (C) 2013 Adapteva, Inc.
-  Contributed by Oleg Raikhman, Yaniv Sapir <support@adapteva.com>
+  See AUTHORS for list of contributors.
+  Support e-mail: <support@adapteva.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License (LGPL)
@@ -27,16 +28,26 @@
 
 #include "e-hal.h"
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 typedef enum {
+	L_D0 = 0,
 	L_D1 = 1,
 	L_D2 = 2,
 	L_D3 = 3,
 	L_D4 = 40,
 } e_loader_diag_t;
 
-int e_load(char *srecFile, bool reset_target, bool broadcast, bool run_target);
-int parseAndSendSrecFile(char *srecFile, Epiphany_t *p, bool broadcast);
+int e_load(char *executable, e_epiphany_t *dev, unsigned row, unsigned col, e_bool_t start);
+int e_load_group(char *executable, e_epiphany_t *dev, unsigned row, unsigned col, unsigned rows, unsigned cols, e_bool_t start);
 
-void e_set_loader_verbosity(e_loader_diag_t verbose);
+e_loader_diag_t e_set_loader_verbosity(e_loader_diag_t verbose);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // __E_LOADER_H__

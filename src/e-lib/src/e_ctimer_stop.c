@@ -4,7 +4,8 @@
   This file is part of the Epiphany Software Development Kit.
 
   Copyright (C) 2013 Adapteva, Inc.
-  Contributed by Oleg Raikhman, Jim Thomas, Yaniv Sapir <support@adapteva.com>
+  See AUTHORS for list of contributors.
+  Support e-mail: <support@adapteva.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License (LGPL)
@@ -22,19 +23,25 @@
   <http://www.gnu.org/licenses/>.
 */
 
+#include "e_ctimers.h"
 #include "e_regs.h"
 
-unsigned e_ctimer_stop(unsigned timerid)
+unsigned e_ctimer_stop(e_ctimer_id_t timer)
 {
+// TODO convert to assembly to eliminate 2 function calls.
 	unsigned shift;
 	unsigned mask;
 	unsigned config;
+	unsigned count;
 
-	shift = (timerid) ? 8:4;
+	shift = (timer) ? 8:4;
 	mask = 0xf << shift;
-	config = e_sysreg_read(E_CONFIG);
+	config = e_reg_read(E_REG_CONFIG);
 	// stop the timer
-	e_sysreg_write(E_CONFIG, config & ~mask);
-	return (config >> shift) & 0xf;
+	e_reg_write(E_REG_CONFIG, config & (~mask));
+
+	count = e_reg_read(timer ? E_REG_CTIMER1 : E_REG_CTIMER0);
+
+	return count;
 }
 

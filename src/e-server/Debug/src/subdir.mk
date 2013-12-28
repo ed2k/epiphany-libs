@@ -41,7 +41,7 @@ CPP_DEPS += \
 src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -I../../ -O0 -g3 -Wall -c  -MMD   -DDUMPVCD=1 -DDV_FAKECLK -DDV_FAKELAT -DDV_FAKEIO -DVL_PRINTF=printf -DVM_TRACE=1  -DSYSTEMPERL -DUTIL_PRINTF=sp_log_printf -Wno-deprecated -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	${CROSS_COMPILE}g++ -I../../ -O0 -g3 -Wall -c  -MMD   -DDUMPVCD=1 -DDV_FAKECLK -DDV_FAKELAT -DDV_FAKEIO -DVL_PRINTF=printf -DVM_TRACE=1  -DSYSTEMPERL -DUTIL_PRINTF=sp_log_printf -Wno-deprecated -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

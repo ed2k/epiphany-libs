@@ -8,9 +8,9 @@
 				<externalSettings>
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/e-hal"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/e-hal.zed"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/e-hal"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/e-hal/Debug"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/e-hal.zed/Debug"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/e-hal/Debug"/>
 						<entry flags="RESOLVED" kind="libraryFile" name="e-hal"/>
 					</externalSetting>
 				</externalSettings>
@@ -37,17 +37,24 @@
 							<tool command="gcc" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.gnu.c.compiler.so.debug.926240931" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.so.debug">
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.so.debug.option.optimization.level.1514679169" name="Optimization Level" superClass="gnu.c.compiler.so.debug.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.so.debug.option.debugging.level.1740583327" name="Debug Level" superClass="gnu.c.compiler.so.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
-								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1779971850" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols"/>
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1779971850" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols"/>
 								<option id="gnu.c.compiler.option.misc.pic.627980100" name="Position Independent Code (-fPIC)" superClass="gnu.c.compiler.option.misc.pic" value="true" valueType="boolean"/>
 								<option id="gnu.c.compiler.option.include.paths.2080778979" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../"/>
-									<listOptionValue builtIn="false" value="/opt/adapteva/esdk/tools/host/armv7l/include"/>
-									<listOptionValue builtIn="false" value="/opt/adapteva/esdk/tools/host/include"/>
+									<listOptionValue builtIn="false" value="../../e-hal/src"/>
+									<listOptionValue builtIn="false" value="../../e-loader/src"/>
 								</option>
+								<option id="gnu.c.compiler.option.misc.other.152246066" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-c -fmessage-length=0 -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.808112755" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.so.debug.1465336492" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.so.debug">
 								<option defaultValue="true" id="gnu.c.link.so.debug.option.shared.2052388339" name="Shared (-shared)" superClass="gnu.c.link.so.debug.option.shared" valueType="boolean"/>
+								<option id="gnu.c.link.option.libs.152525105" name="Libraries (-l)" superClass="gnu.c.link.option.libs"/>
+								<option id="gnu.c.link.option.paths.1218445890" name="Library search path (-L)" superClass="gnu.c.link.option.paths"/>
+								<option id="gnu.c.link.option.userobjs.148062106" name="Other objects" superClass="gnu.c.link.option.userobjs" valueType="userObjs">
+									<listOptionValue builtIn="false" value="../../e-loader/Debug/src/e-process-SREC.o"/>
+									<listOptionValue builtIn="false" value="../../e-loader/Debug/src/e-loader.o"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1097225001" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -62,7 +69,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="src/e-host.h|src/e-reset.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="excluded-modules|src/e-host.h|src/e-reset.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -73,9 +80,9 @@
 				<externalSettings>
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/e-hal"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/e-hal.zed"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/e-hal"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/e-hal/Release"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/e-hal.zed/Release"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/e-hal/Release"/>
 						<entry flags="RESOLVED" kind="libraryFile" name="e-hal"/>
 					</externalSetting>
 				</externalSettings>
@@ -99,20 +106,27 @@
 								<option id="gnu.cpp.compiler.so.release.option.optimization.level.1804825884" name="Optimization Level" superClass="gnu.cpp.compiler.so.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.so.release.option.debugging.level.360488943" name="Debug Level" superClass="gnu.cpp.compiler.so.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.c.compiler.so.release.485973389" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.so.release">
+							<tool command="gcc" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.gnu.c.compiler.so.release.485973389" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.so.release">
 								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.so.release.option.optimization.level.1712624241" name="Optimization Level" superClass="gnu.c.compiler.so.release.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.so.release.option.debugging.level.295897956" name="Debug Level" superClass="gnu.c.compiler.so.release.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.450574181" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../"/>
-									<listOptionValue builtIn="false" value="/opt/adapteva/esdk/tools/host/armv7l/include"/>
-									<listOptionValue builtIn="false" value="/opt/adapteva/esdk/tools/host/include"/>
+									<listOptionValue builtIn="false" value="../../e-hal/src"/>
+									<listOptionValue builtIn="false" value="../../e-loader/src"/>
 								</option>
 								<option id="gnu.c.compiler.option.misc.pic.264168603" name="Position Independent Code (-fPIC)" superClass="gnu.c.compiler.option.misc.pic" value="true" valueType="boolean"/>
-								<option id="gnu.c.compiler.option.preprocessor.def.symbols.640736504" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols"/>
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.640736504" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols"/>
+								<option id="gnu.c.compiler.option.misc.other.532623824" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-c -fmessage-length=0 -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1913658559" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.so.release.1327969619" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.so.release">
 								<option defaultValue="true" id="gnu.c.link.so.release.option.shared.1011672890" name="Shared (-shared)" superClass="gnu.c.link.so.release.option.shared" valueType="boolean"/>
+								<option id="gnu.c.link.option.libs.1729668330" name="Libraries (-l)" superClass="gnu.c.link.option.libs"/>
+								<option id="gnu.c.link.option.paths.813112435" name="Library search path (-L)" superClass="gnu.c.link.option.paths"/>
+								<option id="gnu.c.link.option.userobjs.1138047704" name="Other objects" superClass="gnu.c.link.option.userobjs" valueType="userObjs">
+									<listOptionValue builtIn="false" value="../../e-loader/Release/src/e-loader.o"/>
+									<listOptionValue builtIn="false" value="../../e-loader/Release/src/e-process-SREC.o"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.30331572" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -127,7 +141,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="src/e-reset.c|src/e-host.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="excluded-modules|src/e-reset.c|src/e-host.h" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -147,7 +161,8 @@
 		</scannerConfigBuildInfo>
 	</storageModule>
 	<storageModule moduleId="refreshScope" versionNumber="1">
-		<resource resourceType="PROJECT" workspacePath="/e-hal.zed"/>
+		<resource resourceType="PROJECT" workspacePath="/e-hal"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

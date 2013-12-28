@@ -44,7 +44,7 @@ all: libe-xml.so
 libe-xml.so: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -shared -o "libe-xml.so" $(OBJS) $(USER_OBJS) $(LIBS)
+	${CROSS_COMPILE}g++ -shared -o "libe-xml.so" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -4,7 +4,8 @@
   This file is part of the Epiphany Software Development Kit.
 
   Copyright (C) 2013 Adapteva, Inc.
-  Contributed by Yaniv Sapir <support@adapteva.com>
+  See AUTHORS for list of contributors.
+  Support e-mail: <support@adapteva.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License (LGPL)
@@ -35,51 +36,44 @@ extern "C"
 /////////////////////////////////
 // Device communication functions
 //
+// Platform configuration
+int     e_init(char *hdf);
+int     e_get_platform_info(e_platform_t *platform);
+int     e_finalize();
 // Epiphany access
-int     e_open(Epiphany_t *dev);
-int     e_close(Epiphany_t *dev);
-ssize_t e_read(Epiphany_t *dev, unsigned corenum, const off_t from_addr, void *buf, size_t count);
-ssize_t e_write(Epiphany_t *dev, unsigned corenum, off_t to_addr, const void *buf, size_t count);
-int     e_read_word(Epiphany_t *dev, unsigned corenum, const off_t from_addr);
-ssize_t e_write_word(Epiphany_t *dev, unsigned corenum, off_t to_addr, int data);
-ssize_t e_read_buf(Epiphany_t *dev, unsigned corenum, const off_t from_addr, void *buf, size_t count);
-ssize_t e_write_buf(Epiphany_t *dev, unsigned corenum, off_t to_addr, const void *buf, size_t count);
-int     e_read_reg(Epiphany_t *dev, unsigned corenum, const off_t from_addr);
-ssize_t e_write_reg(Epiphany_t *dev, unsigned corenum, off_t to_addr, int data);
-int     e_read_esys(Epiphany_t *dev, const off_t from_addr);
-ssize_t e_write_esys(Epiphany_t *dev, off_t to_addr, int data);
+int     e_open(e_epiphany_t *dev, unsigned row, unsigned col, unsigned rows, unsigned cols);
+int     e_close(e_epiphany_t *dev);
+// External memory access
+int     e_alloc(e_mem_t *mbuf, off_t base, size_t size);
+int     e_free(e_mem_t *mbuf);
 //
-// eDRAM access
-int     e_alloc(DRAM_t *dram, off_t mbase, size_t msize);
-int     e_free(DRAM_t *dram);
-ssize_t e_mread(DRAM_t *dram, const off_t from_addr, void *buf, size_t count);
-ssize_t e_mwrite(DRAM_t *dram, off_t to_addr, const void *buf, size_t count);
-int     e_mread_word(DRAM_t *dram, const off_t from_addr);
-ssize_t e_mwrite_word(DRAM_t *dram, off_t to_addr, int data);
-ssize_t e_mread_buf(DRAM_t *dram, const off_t from_addr, void *buf, size_t count);
-ssize_t e_mwrite_buf(DRAM_t *dram, off_t to_addr, const void *buf, size_t count);
-//
-// For legacy code support
-ssize_t e_read_abs(unsigned address, void* buf, size_t burst_size);
-ssize_t e_write_abs(unsigned address, void *buf, size_t burst_size);
+// Data transfer
+ssize_t e_read(void *dev, unsigned row, unsigned col, off_t from_addr, void *buf, size_t size);
+ssize_t e_write(void *dev, unsigned row, unsigned col, off_t to_addr, const void *buf, size_t size);
 
-/////////////////////////
-// Core control functions
-int e_reset_core(Epiphany_t *pEpiphany, unsigned corenum);
-int e_reset(Epiphany_t *pEpiphany, e_resetid_t resetid);
-int e_start(Epiphany_t *pEpiphany, unsigned coreid);
+
+///////////////////////////
+// System control functions
+#define e_reset e_reset_system
+int     e_reset_system();
+int     e_reset_chip();
+int     e_reset_group(e_epiphany_t *dev);
+int     e_start(e_epiphany_t *dev, unsigned row, unsigned col);
+int     e_start_group(e_epiphany_t *dev);
+int     e_signal(e_epiphany_t *dev, unsigned row, unsigned col);
+int     e_halt(e_epiphany_t *dev, unsigned row, unsigned col);
+int     e_resume(e_epiphany_t *dev, unsigned row, unsigned col);
 
 
 ////////////////////
 // Utility functions
-unsigned e_get_num_from_coords(unsigned row, unsigned col);
-unsigned e_get_num_from_id(unsigned coreid);
-unsigned e_get_id_from_coords(unsigned row, unsigned col);
-unsigned e_get_id_from_num(unsigned corenum);
-void     e_get_coords_from_id(unsigned coreid, unsigned *row, unsigned *col);
-void     e_get_coords_from_num(unsigned corenum, unsigned *row, unsigned *col);
-
-void e_set_host_verbosity(e_hal_diag_t verbose);
+unsigned e_get_num_from_coords(e_epiphany_t *dev, unsigned row, unsigned col);
+void     e_get_coords_from_num(e_epiphany_t *dev, unsigned corenum, unsigned *row, unsigned *col);
+//
+e_bool_t e_is_addr_on_chip(void *addr);
+e_bool_t e_is_addr_on_group(e_epiphany_t *dev, void *addr);
+//
+e_hal_diag_t e_set_host_verbosity(e_hal_diag_t verbose);
 
 #ifdef __cplusplus
 }

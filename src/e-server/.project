@@ -3,7 +3,6 @@
 	<name>e-server</name>
 	<comment></comment>
 	<projects>
-		<project>epiphany-xml</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

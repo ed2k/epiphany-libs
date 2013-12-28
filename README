@@ -1,12 +1,24 @@
 Epiphany SDK Build and Install Package
 --------------------------------------
 
+=======================================
+NOTE
+
+This repository is the development repo. containing the latest code
+changes. It may not build, and if it does, it may not work correctly.
+
+The latest release repo is located at:
+https://github.com/adapteva/epiphany-libs/tree/esdk.5.13.09.10
+
+To download the latest release repo:
+https://github.com/adapteva/epiphany-libs/archive/esdk.5.13.09.10.tar.gz
+=======================================
+
+
 This directory contains the source modules for building and installing
 the Epiphany SDK components, excluding the GNU compilers and utilities.
 
-The files in this package reflect the current state of the work on the
-software support for the Parallella system prototype ZedBoards with E64G4
-Epiphany chips.
+
 
 
 =======================================

@@ -4,7 +4,8 @@
   This file is part of the Epiphany Software Development Kit.
 
   Copyright (C) 2013 Adapteva, Inc.
-  Contributed by Yaniv Sapir <support@adapteva.com>
+  See AUTHORS for list of contributors.
+  Support e-mail: <support@adapteva.com>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License (LGPL)
@@ -26,8 +27,8 @@
 #define __EPIPHANY_HAL_H__
 
 #include <sys/types.h>
-#include "epiphany-hal-defs.h"
 #include "epiphany-hal-data.h"
 #include "epiphany-hal-api.h"
+#include "e-loader.h"
 
 #endif // __EPIPHANY_HAL_H__
