@@ -7,6 +7,7 @@ BSPS="zed_E16G3_512mb zed_E64G4_512mb parallella_E16G3_1GB"
 xcc=/home/a/Downloads/esdk.5.13.07.10/tools/Sourcery_CodeBench_Lite_for_ARM_GNU_Linux/bin/arm-none-linux-gnueabi-
 xcc=arm-linux-gnueabihf-
 
+
 function build-xml() {
 	# Build the XML parser library
 	echo '==============================='

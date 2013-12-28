@@ -29,7 +29,11 @@ all: libe-loader.so
 libe-loader.so: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross GCC Linker'
+<<<<<<< HEAD
 	${CROSS_COMPILE}gcc -shared -o "libe-loader.so" $(OBJS) $(USER_OBJS) $(LIBS)
+=======
+	gcc -shared -o "libe-loader.so" $(OBJS) $(USER_OBJS) $(LIBS)
+>>>>>>> remotes/adepteva/master
 	@echo 'Finished building target: $@'
 	@echo ' '
 

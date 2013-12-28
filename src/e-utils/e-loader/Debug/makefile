@@ -23,23 +23,21 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: libe-loader.so
+all: e-loader
 
 # Tool invocations
-libe-loader.so: $(OBJS) $(USER_OBJS)
+e-loader: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
-	@echo 'Invoking: Cross GCC Linker'
-<<<<<<< HEAD
-	${CROSS_COMPILE}gcc -shared -o "libe-loader.so" $(OBJS) $(USER_OBJS) $(LIBS)
-=======
-	gcc -shared -o "libe-loader.so" $(OBJS) $(USER_OBJS) $(LIBS)
->>>>>>> remotes/adepteva/master
+	@echo 'Invoking: GCC C Linker'
+	gcc -L../../../e-hal/Release \
+	    -L../../../e-loader/Release \
+	    -o "e-loader" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(LIBRARIES) libe-loader.so
+	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES) e-loader
 	-@echo ' '
 
 .PHONY: all clean dependents
